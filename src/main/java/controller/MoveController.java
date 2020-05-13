@@ -33,8 +33,14 @@ public class MoveController {
         if (field.getField()[x][y] == 0) {
             Figure current = whoseMove(field);
             switch (current) {
-                case O -> field.getField()[x][y] = -1;
-                case X -> field.getField()[x][y] = 1;
+                case O:
+                    field.getField()[x][y] = -1;
+                    break;
+                case X:
+                    field.getField()[x][y] = 1;
+                    break;
+                default:
+                    break;
             }
         }
     }
