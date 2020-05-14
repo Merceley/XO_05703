@@ -91,6 +91,7 @@ public class Animator implements Runnable {
 
 
     private void drawToScreen() {
+        //screenGraphics.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
         screenGraphics.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
     }
 

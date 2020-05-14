@@ -1,6 +1,8 @@
 import view.WindowView;
 import model.Field;
 
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
         int width = 10;
@@ -10,6 +12,4 @@ public class Main {
         WindowView windowView=new WindowView(field);
 
     }
-
-
 }

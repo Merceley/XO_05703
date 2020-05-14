@@ -24,15 +24,17 @@ public class WindowView extends JFrame {
         this.arr = field.getField();
 
 
+
         JPanel panel = new JPanel();
-        panel.setBounds(0, 0, this.getWidth(), this.getHeight());
-        panel.setBackground(Color.black);
+        panel.setBounds(0, WindowView.CELL_SIZE, this.getWidth(), this.getHeight());
+        panel.setBackground(Color.WHITE);
         this.add(panel);
         this.setVisible(true);
 
 
         Animator animator = new Animator(panel.getGraphics(), field);
         new Thread(animator).start();
+
 
         panel.addMouseListener(new MouseListener() {
             @Override
