@@ -19,6 +19,9 @@ public class Field {
         return field;
     }
 
+    public void setField(int[][] field){
+        this.field=field;
+    }
     public Field(int width, int height) {
         this.field = new int[width][height];
         this.height = height;
