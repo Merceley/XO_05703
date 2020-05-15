@@ -17,8 +17,8 @@ public class WindowView extends JFrame {
     private MoveController moveController = new MoveController();
     private Game game;
     private WinnerController winnerController;
-    public static boolean status = false;
-    private boolean stopGame = false;
+
+    public static boolean stopGame = false;
 
 
     public WindowView(Game game) {
@@ -54,11 +54,11 @@ public class WindowView extends JFrame {
                         }
                         if (winnerController.WhoseWin() != null) {
                             if (winnerController.WhoseWin().toString().contains(game.getPlayer1().toString())) {
-                                status = true;
+//                                status = true;
                                 stopGame = true;
                             }
                             if (winnerController.WhoseWin().toString().contains(game.getPlayer2().toString())) {
-                                status = true;
+//                                status = true;
                                 stopGame = true;
                             }
                         }

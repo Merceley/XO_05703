@@ -102,69 +102,73 @@ public class WinnerController {
 
         }
         //победа по диагонали сверху вниз.
-        for (int i = 0; i <= 5; i++) {
-            int[] temp = new int[game.getField().getField()[0].length];
-            for (int k = i; k <= 5; k++) {
-                temp[i] += game.getField().getField()[k][k];
-                winLine[k][k] = 1;
-                if (temp[i] == 5) {
-                    BufferedImage linegoriz = null;
-                    try {
-                        linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
-                        lines.put(1, linegoriz);
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                int temp[][] = new int[7][2];
+                for (int k = 0; k < 5; k++) {
+                    temp[j][0] += game.getField().getField()[k+j][k+i];
+                    temp[j][1] += game.getField().getField()[k+i][k+j];
+                    if (temp[j][0] == 5 || temp[j][1] == 5) {
+                        BufferedImage linegoriz = null;
+                        try {
+                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            lines.put(1, linegoriz);
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return game.getPlayer1();
                     }
-
-                    return game.getPlayer1();
-                }
-                if (temp[i] == -5) {
-                    BufferedImage linegoriz = null;
-                    try {
-                        linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
-                        lines.put(1, linegoriz);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (temp[j][0] == -5 || temp[j][1] == -5) {
+                        BufferedImage linegoriz = null;
+                        try {
+                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            lines.put(1, linegoriz);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return game.getPlayer2();
                     }
-                    return game.getPlayer2();
                 }
             }
+        }
+
+
             winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];
 
-        }
+
         //победа по диагонали снизу вверх.
-        for (int i = game.getField().getField().length - 5; i >= 0; i--) {
-            int[] temp = new int[game.getField().getField()[0].length];
-            for (int k = i; k >= 5 + i; k--) {
-                temp[i] += game.getField().getField()[k][k];
-                winLine[k][k] = 1;
-                if (temp[i] == 5) {
-                    BufferedImage linegoriz = null;
-                    try {
-                        linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
-                        lines.put(1, linegoriz);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    return game.getPlayer1();
-                }
-                if (temp[i] == -5) {
-                    BufferedImage linegoriz = null;
-                    try {
-                        linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
-                        lines.put(1, linegoriz);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return game.getPlayer2();
-                }
-            }
-            winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];
-
-        }
+//        for (int i = game.getField().getField().length - 5; i >= 0; i--) {
+//            int[] temp = new int[game.getField().getField()[0].length];
+//            for (int k = i; k >= 5 + i; k--) {
+//                temp[i] += game.getField().getField()[k][k];
+//                winLine[k][k] = 1;
+//                if (temp[i] == 5) {
+//                    BufferedImage linegoriz = null;
+//                    try {
+//                        linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
+//                        lines.put(1, linegoriz);
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    return game.getPlayer1();
+//                }
+//                if (temp[i] == -5) {
+//                    BufferedImage linegoriz = null;
+//                    try {
+//                        linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
+//                        lines.put(1, linegoriz);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    return game.getPlayer2();
+//                }
+//            }
+//            winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];
+//
+//        }
 
         return null;
     }

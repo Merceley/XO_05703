@@ -53,7 +53,7 @@ public class Animator implements Runnable {
         if (images.isEmpty()) {
             initImages();
         }
-        if (!WindowView.status) {
+        if (!WindowView.stopGame) {
             drawCells();
         }
         //drawCells();
