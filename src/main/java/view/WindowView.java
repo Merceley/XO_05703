@@ -1,9 +1,10 @@
 package view;
 
-
 import controller.MoveController;
+import controller.WinnerController;
 import exception.WrongCoordinatinatesException;
 import model.Field;
+import model.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,36 +15,53 @@ public class WindowView extends JFrame {
     public static final int CELL_SIZE = 70;
     private int[][] arr;
     private MoveController moveController = new MoveController();
+    private Game game;
+    private WinnerController winnerController;
+    public static boolean status = false;
+    private boolean stopGame = false;
 
-    public WindowView(Field field) {
-        this.setBounds(0, 0, field.getWidth() * CELL_SIZE, field.getHeight() * CELL_SIZE + 20);
+
+    public WindowView(Game game) {
+        this.setBounds(0, 0, game.getField().getWidth() * CELL_SIZE, game.getField().getHeight() * CELL_SIZE + 20);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(WindowView.EXIT_ON_CLOSE);
-        this.arr = field.getField();
-
+        this.arr = game.getField().getField();
+        this.winnerController = new WinnerController(game);
 
 
         JPanel panel = new JPanel();
-        panel.setBounds(0, WindowView.CELL_SIZE, this.getWidth(), this.getHeight());
-        panel.setBackground(Color.WHITE);
+        panel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        panel.setBackground(Color.red);
         this.add(panel);
         this.setVisible(true);
 
 
-        Animator animator = new Animator(panel.getGraphics(), field);
-        new Thread(animator).start();
+        Animator animator = new Animator(panel.getGraphics(), game.getField());
+        //new Thread(animator).start();
 
 
         panel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX() / WindowView.CELL_SIZE;//номер ячейки
-                int y = e.getY() / WindowView.CELL_SIZE - 1;
+                int y = e.getY() / WindowView.CELL_SIZE;
                 if (x < arr[0].length || y < arr.length) {
                     try {
-                        moveController.makeMove(x, y, field);
+                        if (!stopGame) {
+                            moveController.makeMove(x, y, game.getField());
+                        }
+                        if (winnerController.WhoseWin() != null) {
+                            if (winnerController.WhoseWin().toString().contains(game.getPlayer1().toString())) {
+                                status = true;
+                                stopGame = true;
+                            }
+                            if (winnerController.WhoseWin().toString().contains(game.getPlayer2().toString())) {
+                                status = true;
+                                stopGame = true;
+                            }
+                        }
                     } catch (WrongCoordinatinatesException ee) {
 
                     }
@@ -70,6 +88,7 @@ public class WindowView extends JFrame {
 
             }
         });
+        new Thread(animator).start();
     }
 }
 

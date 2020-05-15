@@ -10,4 +10,16 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
     }
+
+    public Field getField() {
+        return field;
+    }
+
+    public Player getPlayer1(){
+        return player1;
+    }
+
+    public Player getPlayer2(){
+        return player2;
+    }
 }

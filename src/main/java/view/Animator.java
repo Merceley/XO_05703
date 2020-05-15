@@ -1,5 +1,6 @@
 package view;
 
+import controller.WinnerController;
 import model.Field;
 
 import javax.imageio.ImageIO;
@@ -16,7 +17,7 @@ public class Animator implements Runnable {
     private int fieldHeight;
     private int fieldWidth;
     private HashMap<Integer, BufferedImage> images;
-    private  int[][] arr;
+    private int[][] arr;
 
 
     public Animator(Graphics screenGraphics, Field field) {
@@ -31,21 +32,31 @@ public class Animator implements Runnable {
     public void initImages() {
         images = new HashMap<>();
         try {
-            BufferedImage image1 = ImageIO.read(new File("images"+"//"+"-1.png"));
+            BufferedImage image1 = ImageIO.read(new File("images" + "//" + "-1.png"));
             images.put(-1, image1);
-            BufferedImage image2 = ImageIO.read(new File("images"+"//"+"0.jpg"));
+            BufferedImage image2 = ImageIO.read(new File("images" + "//" + "0.jpg"));
             images.put(0, image2);
-            BufferedImage image3 = ImageIO.read(new File("images"+"//"+"1.png"));
+            BufferedImage image3 = ImageIO.read(new File("images" + "//" + "1.png"));
             images.put(1, image3);
+            BufferedImage linevert = ImageIO.read(new File("images" + "//" + "linevert.png"));
+            images.put(2, linevert);
+            BufferedImage linegoriz = ImageIO.read(new File("images" + "//" + "linegoriz.png"));
+            images.put(3, linegoriz);
+
         } catch (IOException e) {
             System.out.println("ошибка при инициализации картинки");
         }
     }
 
-
     private void drawAll() {
         initImages();
-        drawCells();
+        if(!WindowView.status){
+            drawCells();
+        }
+        //drawCells();
+        else {
+            resetImage();
+        }
         drawToScreen();
 
     }
@@ -53,28 +64,28 @@ public class Animator implements Runnable {
     public void drawCells() {
         for (int i = 0; i < arr[0].length; i++) {
             for (int j = 0; j < arr.length; j++) {
-                if(arr[i][j]==0){
+                if (arr[i][j] == 0) {
                     graphics.drawImage(images.get(0),
-                            i*WindowView.CELL_SIZE,
-                            (j+1)*WindowView.CELL_SIZE,
+                            i * WindowView.CELL_SIZE,
+                            j * WindowView.CELL_SIZE,
                             WindowView.CELL_SIZE,
                             WindowView.CELL_SIZE,
                             null);
                 }
-                if(arr[i][j]==1){
+                if (arr[i][j] == 1) {
                     graphics.drawImage(images.get(1),
-                            i*WindowView.CELL_SIZE+5,
-                            (j+1)*WindowView.CELL_SIZE+5,
-                            WindowView.CELL_SIZE-10,
-                            WindowView.CELL_SIZE-10,
+                            i * WindowView.CELL_SIZE + 5,
+                            j * WindowView.CELL_SIZE + 5,
+                            WindowView.CELL_SIZE - 10,
+                            WindowView.CELL_SIZE - 10,
                             null);
                 }
-                if(arr[i][j]==-1){
+                if (arr[i][j] == -1) {
                     graphics.drawImage(images.get(-1),
-                            i*WindowView.CELL_SIZE+5,
-                            (j+1)*WindowView.CELL_SIZE+5,
-                            WindowView.CELL_SIZE-10,
-                            WindowView.CELL_SIZE-10,
+                            i * WindowView.CELL_SIZE + 5,
+                            j * WindowView.CELL_SIZE + 5,
+                            WindowView.CELL_SIZE - 10,
+                            WindowView.CELL_SIZE - 10,
                             null);
                 }
             }
@@ -87,12 +98,26 @@ public class Animator implements Runnable {
         }*/
         //graphics.drawImage(images.get(-1), 5, 5, WindowView.CELL_SIZE-10, WindowView.CELL_SIZE-10, null);
 
+
     }
 
 
     private void drawToScreen() {
         //screenGraphics.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
-        screenGraphics.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
+        screenGraphics.drawImage(img, 0, 0,
+                img.getWidth(), img.getHeight(), null);
+    }
+
+    public void resetImage() {
+        drawCells();
+        for (int i = WinnerController.winLineY[0]; i <= WinnerController.winLineY[1]; i++) {
+            graphics.drawImage(images.get(2),
+                    WinnerController.winLineX * WindowView.CELL_SIZE,
+                    i * WindowView.CELL_SIZE,
+                    WindowView.CELL_SIZE ,
+                    WindowView.CELL_SIZE,
+                    null);
+        }
     }
 
     @Override

@@ -33,7 +33,7 @@ public class MoveController {
         if (y > field.getHeight() || y < 0) {
             throw new WrongCoordinatinatesException();
         }
-        if (field.getField()[x][y] == 0) {//навести красоту
+        if (field.getField()[x][y] == 0) {
             Figure current = whoseMove(field);
             switch (current) {
                 case O:
@@ -49,4 +49,6 @@ public class MoveController {
             }
         }
     }
+
+
 }
