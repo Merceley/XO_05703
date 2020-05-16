@@ -1,3 +1,4 @@
+import controller.BotController;
 import model.Figure;
 import model.Game;
 import model.Player;
@@ -12,9 +13,10 @@ public class Main {
         int height = 10;
 
         Field field = new Field(width, height);
-        Player player1 = new Player(Figure.X,"Игрок 1");
-        Player player2 = new Player(Figure.O,"Игрок 2");
+        Player player1 = new Player(Figure.X,"Соник");
+        Player player2 = new Player(Figure.O,"Фиксик");
         Game game = new Game(player1,player2,width,height);
+        //BotController botController = new BotController(player1,game);
         WindowView windowView=new WindowView(game);
     }
 }

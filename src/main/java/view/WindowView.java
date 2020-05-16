@@ -6,10 +6,13 @@ import exception.WrongCoordinatinatesException;
 import model.Field;
 import model.Game;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 public class WindowView extends JFrame {
     public static final int CELL_SIZE = 70;
@@ -17,8 +20,8 @@ public class WindowView extends JFrame {
     private MoveController moveController = new MoveController();
     private Game game;
     private WinnerController winnerController;
-    public static boolean status = false;
-    private boolean stopGame = false;
+    //public static boolean status = false;
+    public static boolean stopGame = false;
 
 
     public WindowView(Game game) {
@@ -33,7 +36,7 @@ public class WindowView extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, this.getWidth(), this.getHeight());
-        panel.setBackground(Color.red);
+        panel.setBackground(Color.WHITE);
         this.add(panel);
         this.setVisible(true);
 
@@ -54,12 +57,29 @@ public class WindowView extends JFrame {
                         }
                         if (winnerController.WhoseWin() != null) {
                             if (winnerController.WhoseWin().toString().contains(game.getPlayer1().toString())) {
-                                status = true;
+                                //status = true;
                                 stopGame = true;
                             }
                             if (winnerController.WhoseWin().toString().contains(game.getPlayer2().toString())) {
-                                status = true;
+                                //status = true;
                                 stopGame = true;
+
+
+                                // Включаем музыку выйгрыша фиксика
+                                try {
+                                    File soundFile = new File("images" + "//" + "Фиксики1.wav");
+                                    AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
+                                    Clip clip = AudioSystem.getClip();
+                                    clip.open(ais);
+                                    clip.setFramePosition(0);
+                                    clip.start();
+                                    Thread.sleep(clip.getMicrosecondLength()/1000);
+                                    clip.stop();
+                                    clip.close();
+                                } catch (IOException | UnsupportedAudioFileException | LineUnavailableException exc) {
+                                    exc.printStackTrace();
+                                } catch (InterruptedException exc) {}
+
                             }
                         }
                     } catch (WrongCoordinatinatesException ee) {

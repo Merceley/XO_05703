@@ -17,7 +17,7 @@ public class Animator implements Runnable {
     private BufferedImage img;
     private int fieldHeight;
     private int fieldWidth;
-    private HashMap<Integer, BufferedImage> images;
+    private HashMap<Integer, BufferedImage> images = new HashMap<>();
     private int[][] arr;
 
     public Animator(Graphics screenGraphics, Field field) {
@@ -30,30 +30,32 @@ public class Animator implements Runnable {
     }
 
     private void drawAll() {
-        downloadImages();
-        if(!WindowView.status){
+        if (images.isEmpty()) {
+            downloadImages();
+        }
+        if (!WindowView.stopGame) {
             drawCells();
         }
         else {
             drawImage();
         }
         drawToScreen();
-
     }
 
-    public void downloadImages() {
-        images = new HashMap<>();
+
+        public void downloadImages() {
+        //images = new HashMap<>();
         try {
-            BufferedImage image1 = ImageIO.read(new File("images" + "//" + "-1.png"));
+            BufferedImage image1 = ImageIO.read(new File("images" + "//" + "fixic.png"));
             images.put(-1, image1);
             BufferedImage image2 = ImageIO.read(new File("images" + "//" + "0.jpg"));
             images.put(0, image2);
-            BufferedImage image3 = ImageIO.read(new File("images" + "//" + "1.png"));
+            BufferedImage image3 = ImageIO.read(new File("images" + "//" + "соник.png"));
             images.put(1, image3);
-            BufferedImage linevert = ImageIO.read(new File("images" + "//" + "linevert.png"));
-            images.put(2, linevert);
-            BufferedImage linegoriz = ImageIO.read(new File("images" + "//" + "linegoriz.png"));
-            images.put(3, linegoriz);
+//            BufferedImage linevert = ImageIO.read(new File("images" + "//" + "linevert.png"));
+//            images.put(2, linevert);
+//            BufferedImage linegoriz = ImageIO.read(new File("images" + "//" + "linegoriz.png"));
+//            images.put(3, linegoriz);
 
         } catch (IOException e) {
             System.out.println("ошибка при инициализации картинки");
