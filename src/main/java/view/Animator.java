@@ -4,6 +4,7 @@ import controller.WinnerController;
 import model.Field;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,7 +17,7 @@ public class Animator implements Runnable {
     private BufferedImage img;
     private int fieldHeight;
     private int fieldWidth;
-    private HashMap<Integer, BufferedImage> images;
+    private HashMap<Integer, BufferedImage> images = new HashMap<>();
     private int[][] arr;
 
 
@@ -30,7 +31,7 @@ public class Animator implements Runnable {
     }
 
     public void initImages() {
-        images = new HashMap<>();
+//        images = new HashMap<>();
         try {
             BufferedImage image1 = ImageIO.read(new File("images" + "//" + "-1.png"));
             images.put(-1, image1);
@@ -49,8 +50,10 @@ public class Animator implements Runnable {
     }
 
     private void drawAll() {
-        initImages();
-        if(!WindowView.status){
+        if (images.isEmpty()) {
+            initImages();
+        }
+        if (!WindowView.stopGame) {
             drawCells();
         }
         //drawCells();
@@ -110,14 +113,28 @@ public class Animator implements Runnable {
 
     public void resetImage() {
         drawCells();
-        for (int i = WinnerController.winLineY[0]; i <= WinnerController.winLineY[1]; i++) {
-            graphics.drawImage(images.get(2),
-                    WinnerController.winLineX * WindowView.CELL_SIZE,
-                    i * WindowView.CELL_SIZE,
-                    WindowView.CELL_SIZE ,
-                    WindowView.CELL_SIZE,
-                    null);
+//        for (int i = WinnerController.winLineY[0]; i <= WinnerController.winLineY[1]; i++) {
+//            graphics.drawImage(images.get(2),
+//                    WinnerController.winLineX * WindowView.CELL_SIZE,
+//                    i * WindowView.CELL_SIZE,
+//                    WindowView.CELL_SIZE ,
+//                    WindowView.CELL_SIZE,
+//                    null);
+//        }
+        for (int i = 0; i < WinnerController.winLine.length; i++) {
+            for (int j = 0; j < WinnerController.winLine[0].length; j++) {
+                if (WinnerController.winLine[i][j] == 1) {
+                    graphics.drawImage(WinnerController.lines.get(1),
+                            i * WindowView.CELL_SIZE + 2,
+                            j * WindowView.CELL_SIZE + 2,
+                            WindowView.CELL_SIZE - 4,
+                            WindowView.CELL_SIZE - 4,
+                            null);
+                }
+            }
         }
+
+
     }
 
     @Override
