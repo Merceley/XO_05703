@@ -12,7 +12,9 @@ import java.util.HashMap;
 
 public class WinnerController {
     int[] arr;
+    private  int[][] winLines1;
     public static int[][] winLine;
+    private  int[][] winLines2;
     private Game game;
     public static HashMap<Integer, BufferedImage> lines = new HashMap<>();
 
@@ -33,6 +35,8 @@ public class WinnerController {
                 arr[i] = 1;
             }
         }*/
+        winLines1 = new int[game.getField().getField().length][game.getField().getField()[0].length];
+        winLines2 = new int[game.getField().getField().length][game.getField().getField()[0].length];
         winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];
         //Победа по вертикали.
         for (int i = 0; i < game.getField().getField().length; i++) {
@@ -108,7 +112,10 @@ public class WinnerController {
                 for (int k = 0; k < 5; k++) {
                     temp[j][0] += game.getField().getField()[k+j][k+i];
                     temp[j][1] += game.getField().getField()[k+i][k+j];
-                    if (temp[j][0] == 5 || temp[j][1] == 5) {
+                    winLines1[k+j][k+i] = 1;
+                    winLines2[k+i][k+j] = 1;
+                    if (temp[j][0] == 5) {
+                        winLine = winLines1;
                         BufferedImage linegoriz = null;
                         try {
                             linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
@@ -119,7 +126,31 @@ public class WinnerController {
                         }
                         return game.getPlayer1();
                     }
-                    if (temp[j][0] == -5 || temp[j][1] == -5) {
+                    if (temp[j][1] == 5) {
+                        winLine = winLines2;
+                        BufferedImage linegoriz = null;
+                        try {
+                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            lines.put(1, linegoriz);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return game.getPlayer1();
+                    }
+                    if (temp[j][0] == -5) {
+                        winLine = winLines1;
+                        BufferedImage linegoriz = null;
+                        try {
+                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            lines.put(1, linegoriz);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return game.getPlayer2();
+                    }
+                    if (temp[j][1] == -5) {
+                        winLine = winLines2;
                         BufferedImage linegoriz = null;
                         try {
                             linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
@@ -130,11 +161,14 @@ public class WinnerController {
                         return game.getPlayer2();
                     }
                 }
+                winLines1 = new int[game.getField().getField().length][game.getField().getField()[0].length];
+                winLines2 = new int[game.getField().getField().length][game.getField().getField()[0].length];
             }
+
         }
 
 
-            winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];
+
 
 
         //победа по диагонали снизу вверх.
