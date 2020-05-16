@@ -29,7 +29,7 @@ public class WinnerController {
 
         //победа по вертикале
         for (int i = 0; i < game.getField().getField().length; i++) {//по строкам
-            for (int j = 0; j < 5; j++) {//столбец
+            for (int j = 0; j < 6; j++) {//столбец
                 int[] temp = new int[game.getField().getField()[0].length];
                 for (int k = j; k < 5 + j; k++) {//двигаем столбец
                     temp[i] += game.getField().getField()[i][k];
@@ -62,7 +62,7 @@ public class WinnerController {
 
         //победа по горизонтали
         for (int i = 0; i < game.getField().getField().length; i++) {//по строке
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 6; j++) {
                 int[] temp = new int[game.getField().getField()[0].length];
                 for (int k = j; k < 5 + j; k++) {
                     temp[i] += game.getField().getField()[k][i];
