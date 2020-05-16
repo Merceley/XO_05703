@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class WinnerController {
-    int[] arr;
     private  int[][] winLines1;
     public static int[][] winLine;
     private  int[][] winLines2;
