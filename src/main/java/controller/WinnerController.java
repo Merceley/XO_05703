@@ -155,7 +155,7 @@ public class WinnerController {
 
         }
 
-        //победа по диагонали c низу вверх
+        //победа по диагонали c низу вверх/
         for (int i = 5; i < game.getField().getField().length; i++) {
             for (int j = 0; j < game.getField().getField().length; j++) {
                 if (game.getField().getField()[i][j] == 1) {
