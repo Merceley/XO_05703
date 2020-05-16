@@ -29,7 +29,19 @@ public class Animator implements Runnable {
         this.arr = field.getField();
     }
 
-    public void initImages() {
+    private void drawAll() {
+        downloadImages();
+        if(!WindowView.status){
+            drawCells();
+        }
+        else {
+            drawImage();
+        }
+        drawToScreen();
+
+    }
+
+    public void downloadImages() {
         images = new HashMap<>();
         try {
             BufferedImage image1 = ImageIO.read(new File("images" + "//" + "-1.png"));
@@ -46,19 +58,6 @@ public class Animator implements Runnable {
         } catch (IOException e) {
             System.out.println("ошибка при инициализации картинки");
         }
-    }
-
-    private void drawAll() {
-        initImages();
-        if(!WindowView.status){
-            drawCells();
-        }
-        //drawCells();
-        else {
-            resetImage();
-        }
-        drawToScreen();
-
     }
 
     public void drawCells() {
@@ -90,17 +89,7 @@ public class Animator implements Runnable {
                 }
             }
         }
-        /*
-        for (int i = 0; i < fieldWidth; i += WindowView.CELL_SIZE) {
-            for (int j = 0; j < fieldHeight; j += WindowView.CELL_SIZE) {
-                graphics.drawImage(images.get(-1), i, j, WindowView.CELL_SIZE, WindowView.CELL_SIZE, null);
-            }
-        }*/
-        //graphics.drawImage(images.get(-1), 5, 5, WindowView.CELL_SIZE-10, WindowView.CELL_SIZE-10, null);
-
-
     }
-
 
     private void drawToScreen() {
         screenGraphics.drawImage(img,
@@ -109,7 +98,7 @@ public class Animator implements Runnable {
                 null);
     }
 
-    public void resetImage() {
+    public void drawImage() {
         drawCells();
         for (int i = 0; i < WinnerController.winLine.length; i++) {
             for (int j = 0; j < WinnerController.winLine[0].length; j++) {
