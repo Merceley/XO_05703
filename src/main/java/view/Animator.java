@@ -4,6 +4,7 @@ import controller.WinnerController;
 import model.Field;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -18,7 +19,6 @@ public class Animator implements Runnable {
     private int fieldWidth;
     private HashMap<Integer, BufferedImage> images;
     private int[][] arr;
-
 
     public Animator(Graphics screenGraphics, Field field) {
         this.screenGraphics = screenGraphics;
@@ -103,20 +103,23 @@ public class Animator implements Runnable {
 
 
     private void drawToScreen() {
-        //screenGraphics.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
-        screenGraphics.drawImage(img, 0, 0,
-                img.getWidth(), img.getHeight(), null);
+        screenGraphics.drawImage(img,
+                0, 0,
+                img.getWidth(), img.getHeight(),
+                null);
     }
 
     public void resetImage() {
         drawCells();
-        for (int i = WinnerController.winLineY[0]; i <= WinnerController.winLineY[1]; i++) {
-            graphics.drawImage(images.get(2),
-                    WinnerController.winLineX * WindowView.CELL_SIZE,
-                    i * WindowView.CELL_SIZE,
-                    WindowView.CELL_SIZE ,
-                    WindowView.CELL_SIZE,
-                    null);
+        for (int i = 0; i < WinnerController.winLine.length; i++) {
+            for (int j = 0; j < WinnerController.winLine[0].length; j++) {
+                if (WinnerController.winLine[i][j] == 1) {
+                    graphics.drawImage(WinnerController.lines.get(1),
+                            i * WindowView.CELL_SIZE + 2, j * WindowView.CELL_SIZE + 2,
+                            WindowView.CELL_SIZE - 4, WindowView.CELL_SIZE - 4,
+                            null);
+                }
+            }
         }
     }
 
