@@ -369,6 +369,17 @@ public class BotController {
                 }
             }
         }
+
+        int y = 0;
+        for (int i = 0; i < game.getField().getField().length; i++) {
+            for (int j = 0; j < game.getField().getField().length; j++) {
+                y += game.getField().getField()[i][j];
+            }
+        }if (y == 0){
+            MoveController.makeMove(5,5,game.getField());
+            return false;
+        }
+
         return false;
     }
 
