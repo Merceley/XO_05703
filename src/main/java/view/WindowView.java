@@ -53,16 +53,16 @@ public class WindowView extends JFrame {
                 if (x < arr[0].length || y < arr.length) {
                     try {
                         if (!stopGame) {
-                            moveController.makeMove(x, y, game.getField());
+                            MoveController.makeMove(x, y, game.getField());
                             BotController.gadid();
                         }
                         //if(!stopGame){BotController.gadid();} исправить
-                        if (winnerControllerDyutinGayazov.WhoseWin() != null) {
-                            if (winnerControllerDyutinGayazov.WhoseWin().toString().contains(game.getPlayer1().toString())) {
+                        if (winnerControllerDyutinGayazov.WhoseWin(game) != null) {
+                            if (winnerControllerDyutinGayazov.WhoseWin(game).toString().contains(game.getPlayer1().toString())) {
                                 //status = true;
                                 stopGame = true;
                             }
-                            if (winnerControllerDyutinGayazov.WhoseWin().toString().contains(game.getPlayer2().toString())) {
+                            if (winnerControllerDyutinGayazov.WhoseWin(game).toString().contains(game.getPlayer2().toString())) {
                                 //status = true;
                                 stopGame = true;
 
