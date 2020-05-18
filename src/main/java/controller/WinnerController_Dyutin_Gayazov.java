@@ -12,17 +12,17 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class WinnerController_Dyutin_Gayazov {
-    private int[][] winLines1;
-    private int[][] winLines2;
+    private static int[][] winLines1;
+    private static int[][] winLines2;
     public static int[][] winLine;
-    private Game game;
+    private static Game game;
     public static HashMap<Integer, BufferedImage> lines = new HashMap<>();
 
     public WinnerController_Dyutin_Gayazov(Game game) {
         this.game = game;
     }
 
-    public Player WhoseWin() {
+    public static Player WhoseWin(Game game) {
         winLines1 = new int[game.getField().getField().length][game.getField().getField()[0].length];
         winLines2 = new int[game.getField().getField().length][game.getField().getField()[0].length];
         winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];

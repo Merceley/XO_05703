@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.Math.*;
@@ -30,7 +31,7 @@ public class BotController {
                 int[][] temp = new int[10][2];
                 for (int l = 0; l < 4; l++) {
                     temp[j][0] += game.getField().getField()[l + j][l + k];
-                    temp[j][1] += game.getField().getField()[l + k][l + j];
+//                    temp[j][1] += game.getField().getField()[l + k][l + j];
                     if (temp[j][0] == -4) {
                         try {
                             if (game.getField().getField()[l + j + 1][k + l + 1] == 0) {
@@ -47,22 +48,22 @@ public class BotController {
                         } catch (Exception e) {
                         }
                     }
-                    if (temp[j][1] == -4) {
-                        try {
-                            if (game.getField().getField()[k + l + 1][l + j + 1] == 0) {
-                                MoveController.makeMove(k + l + 1, l + j + 1, game.getField());
-                                return false;
-                            }
-                        } catch (Exception e) {
-                        }
-                        try {
-                            if (game.getField().getField()[k + l - 4][l + j - 4] == 0) {
-                                MoveController.makeMove(k + l - 4, l + j - 4, game.getField());
-                                return false;
-                            }
-                        } catch (Exception e) {
-                        }
-                    }
+//                    if (temp[j][1] == -4) {
+//                        try {
+//                            if (game.getField().getField()[k + l + 1][l + j + 1] == 0) {
+//                                MoveController.makeMove(k + l + 1, l + j + 1, game.getField());
+//                                return false;
+//                            }
+//                        } catch (Exception e) {
+//                        }
+//                        try {
+//                            if (game.getField().getField()[k + l - 4][l + j - 4] == 0) {
+//                                MoveController.makeMove(k + l - 4, l + j - 4, game.getField());
+//                                return false;
+//                            }
+//                        } catch (Exception e) {
+//                        }
+//                    }
                     //
                     if (temp[j][0] == 4) {
                         try {
@@ -80,109 +81,63 @@ public class BotController {
                         } catch (Exception e) {
                         }
                     }
-                    if (temp[j][1] == 4) {
-                        try {
-                            if (game.getField().getField()[k + l + 1][l + j + 1] == 0) {
-                                MoveController.makeMove(k + l + 1, l + j + 1, game.getField());
-                                return false;
-                            }
-                        } catch (Exception e) {
-                        }
-                        try {
-                            if (game.getField().getField()[k + l - 4][l + j - 4] == 0) {
-                                MoveController.makeMove(k + l - 4, l + j - 4, game.getField());
-                                return false;
-                            }
-                        } catch (Exception e) {
-                        }
-                    }
+//                    if (temp[j][1] == 4) {
+//                        try {
+//                            if (game.getField().getField()[k + l + 1][l + j + 1] == 0) {
+//                                MoveController.makeMove(k + l + 1, l + j + 1, game.getField());
+//                                return false;
+//                            }
+//                        } catch (Exception e) {
+//                        }
+//                        try {
+//                            if (game.getField().getField()[k + l - 4][l + j - 4] == 0) {
+//                                MoveController.makeMove(k + l - 4, l + j - 4, game.getField());
+//                                return false;
+//                            }
+//                        } catch (Exception e) {
+//                        }
+//                    }
                 }
             }
         }
 
-        //////////////////////////
-        int[][] field = new int[game.getField().getField().length][game.getField().getField()[0].length];
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) {
-                field[i][j] = game.getField().getField()[i][j];
-            }
-        }
-        WinnerController_Dyutin_Gayazov.rotateMatrix(field);
-        for (int j = 0; j < 7; j++) {
-            for (int k = 0; k < 7; k++) {
-                int[][] temp = new int[10][2];
-                for (int l = 0; l < 4; l++) {
-                    temp[j][0] += field[l + j][l + k];
-                    temp[j][1] += field[l + k][l + j];
-                    if (temp[j][0] ==
-                            4) {
+        //4 фигуры по диагонали снизу вверх.
+        for (int i = 9; i > 2; i--) {
+            for (int j = 0; j < 7; j++) {
+                int[] temp = new int[10];
+                for (int k = 0; k < 4; k++) {
+                    temp[i] += game.getField().getField()[i - k][j + k];
+                    if (temp[i] == - 4) {
                         try {
-                            if (field[l + j + 1][k + l + 1] == 0) {
-                                MoveController.makeMove(l + j + 1, l + j + 1, game.getField());
+                            if (game.getField().getField()[i - k - 1][j + k + 1] == 0){
+                                MoveController.makeMove(i - k -1, j + k + 1, game.getField());
                                 return false;
                             }
-                        } catch (Exception e) {
-                        }
-                        try {
-                            if (field[l + j - 4][k + l - 4] == 0) {
-                                MoveController.makeMove(k + l - 4, l + j - 4, game.getField());
+                        }catch (Exception e){}
+                        try{
+                            if(game.getField().getField()[i - k + 4][j + k - 4] == 0){
+                                MoveController.makeMove(i - k + 4,j + k - 4,game.getField());
                                 return false;
                             }
-                        } catch (Exception e) {
-                        }
+                        }catch (Exception e){}
                     }
-                    if (temp[j][1] == 4) {
+                    if (temp[i] ==  4) {
                         try {
-                            if (field[k + l + 1][l + j + 1] == 0) {
-                                MoveController.makeMove(l + j + 1, k + l + 1, game.getField());
+                            if (game.getField().getField()[i - k - 1][j + k + 1] == 0){
+                                MoveController.makeMove(i - k -1, j + k + 1, game.getField());
                                 return false;
                             }
-                        } catch (Exception e) {
-                        }
-                        try {
-                            if (field[k + l - 4][l + j - 4] == 0) {
-                                MoveController.makeMove(l + j - 4, k + l - 4, game.getField());
+                        }catch (Exception e){}
+                        try{
+                            if(game.getField().getField()[i - k + 4][j + k - 4] == 0){
+                                MoveController.makeMove(i - k + 4,j + k - 4,game.getField());
                                 return false;
                             }
-                        } catch (Exception e) {
-                        }
+                        }catch (Exception e){}
                     }
-                    ///
-//                    if (temp[j][0] == 4) {
-//                        try {
-//                            if (field[l + j + 1][k + l + 1] == 0) {
-//                                MoveController.makeMove(l + j - 4, k + l + 1, game.getField());
-//                                return false;
-//                            }
-//                        } catch (Exception e) {
-//                        }
-//                        try {
-//                            if (field[l + j - 4][k + l - 4] == 0) {
-//                                field[l + j - 4][k + l -4] = -1;
-//                                MoveController.makeMove(l + j + 4, k + l - 4, game.getField());
-//                                return false;
-//                            }
-//                        } catch (Exception e) {
-//                        }
-//                    }
-//                    if (temp[j][1] == 4) {
-//                        try {
-//                            if (field[k + l + 1][l + j + 1] == 0) {
-//                                MoveController.makeMove(k + l - 4, l + j + 1, game.getField());
-//                                return false;
-//                            }
-//                        } catch (Exception e) {
-//                        }
-//                        try {
-//                            if (field[k + l - 4][l + j - 4] == 0) {
-//                                MoveController.makeMove(k + l + 4, l + j - 4, game.getField());
-//                                return false;
-//                            }
-//                        } catch (Exception e) {
-//                        }
-//                    }
                 }
             }
+
         }
 
         //////////////////////
@@ -289,22 +244,22 @@ public class BotController {
                         } catch (Exception e) {
                         }
                     }
-                    if (temp[j][1] == 3) {
-                        try {
-                            if (game.getField().getField()[k + l + 1][l + j + 1] == 0) {
-                                MoveController.makeMove(k + l + 1, l + j + 1, game.getField());
-                                return false;
-                            }
-                        } catch (Exception e) {
-                        }
-                        try {
-                            if (game.getField().getField()[k + l - 3][l + j - 3] == 0) {
-                                MoveController.makeMove(k + l - 3, l + j - 3, game.getField());
-                                return false;
-                            }
-                        } catch (Exception e) {
-                        }
-                    }
+//                    if (temp[j][1] == 3) {
+//                        try {
+//                            if (game.getField().getField()[k + l + 1][l + j + 1] == 0) {
+//                                MoveController.makeMove(k + l + 1, l + j + 1, game.getField());
+//                                return false;
+//                            }
+//                        } catch (Exception e) {
+//                        }
+//                        try {
+//                            if (game.getField().getField()[k + l - 3][l + j - 3] == 0) {
+//                                MoveController.makeMove(k + l - 3, l + j - 3, game.getField());
+//                                return false;
+//                            }
+//                        } catch (Exception e) {
+//                        }
+//                    }
                 }
             }
         }
