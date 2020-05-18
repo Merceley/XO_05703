@@ -304,7 +304,7 @@ public class WinnerController_Dyutin_Gayazov {
         return null;
     }
 
-    private static void rotateMatrix(int[][] mat) {
+    public static void rotateMatrix(int[][] mat) {
         // Consider all squares one by one
 //        int[][] mat = game.getField().getField();
         for (int x = 0; x < mat.length / 2; x++) {
