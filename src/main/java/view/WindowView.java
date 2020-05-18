@@ -56,6 +56,7 @@ public class WindowView extends JFrame {
                             moveController.makeMove(x, y, game.getField());
                             BotController.gadid();
                         }
+                        //if(!stopGame){BotController.gadid();} исправить
                         if (winnerControllerDyutinGayazov.WhoseWin() != null) {
                             if (winnerControllerDyutinGayazov.WhoseWin().toString().contains(game.getPlayer1().toString())) {
                                 //status = true;

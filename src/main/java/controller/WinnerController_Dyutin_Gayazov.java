@@ -3,6 +3,7 @@ package controller;
 import model.Field;
 import model.Game;
 import model.Player;
+import view.WindowView;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -41,6 +42,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer1();
                     }
                     if (temp[i] == -5) {
@@ -51,6 +53,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer2();
                     }
 
@@ -74,6 +77,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer1();
                     }
                     if (temp[i] == -5) {
@@ -84,6 +88,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer2();
                     }
                 }
@@ -111,6 +116,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer1();
                     }
                     if (temp[j][1] == 5) {
@@ -123,6 +129,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer1();
                     }
                     if (temp[j][0] == -5) {
@@ -134,6 +141,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer2();
                     }
                     if (temp[j][1] == -5) {
@@ -145,6 +153,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer2();
                     }
                 }
@@ -238,6 +247,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer1();
                     }
                     if (temp[j][1] == 5) {
@@ -253,6 +263,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer1();
                     }
                     if (temp[j][0] == -5) {
@@ -267,6 +278,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer2();
                     }
                     if (temp[j][1] == -5) {
@@ -281,6 +293,7 @@ public class WinnerController_Dyutin_Gayazov {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        WindowView.stopGame = true;
                         return game.getPlayer2();
                     }
                 }
