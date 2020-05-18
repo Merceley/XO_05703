@@ -1,10 +1,9 @@
 package view;
 
-import controller.WinnerController;
+import controller.WinnerController_Dyutin_Gayazov;
 import model.Field;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -102,10 +101,10 @@ public class Animator implements Runnable {
 
     public void drawImage() {
         drawCells();
-        for (int i = 0; i < WinnerController.winLine.length; i++) {
-            for (int j = 0; j < WinnerController.winLine[0].length; j++) {
-                if (WinnerController.winLine[i][j] == 1) {
-                    graphics.drawImage(WinnerController.lines.get(1),
+        for (int i = 0; i < WinnerController_Dyutin_Gayazov.winLine.length; i++) {
+            for (int j = 0; j < WinnerController_Dyutin_Gayazov.winLine[0].length; j++) {
+                if (WinnerController_Dyutin_Gayazov.winLine[i][j] == 1) {
+                    graphics.drawImage(WinnerController_Dyutin_Gayazov.lines.get(1),
                             i * WindowView.CELL_SIZE + 2, j * WindowView.CELL_SIZE + 2,
                             WindowView.CELL_SIZE - 4, WindowView.CELL_SIZE - 4,
                             null);

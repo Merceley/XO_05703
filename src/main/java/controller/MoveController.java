@@ -25,7 +25,7 @@ public class MoveController {
         }
     }
 
-    public void makeMove(int x, int y, Field field) {
+    public static void makeMove(int x, int y, Field field) {
         arr = field.getField();
         if (x > field.getWidth() || x < 0) {
             throw new WrongCoordinatinatesException();

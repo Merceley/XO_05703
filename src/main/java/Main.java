@@ -16,7 +16,8 @@ public class Main {
         Player player1 = new Player(Figure.X,"Соник");
         Player player2 = new Player(Figure.O,"Фиксик");
         Game game = new Game(player1,player2,width,height);
-        //BotController botController = new BotController(player1,game);
+        //Game game = new Game(player1,width,height);
+        BotController botController = new BotController(game);
         WindowView windowView=new WindowView(game);
     }
 }

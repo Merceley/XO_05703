@@ -1,9 +1,9 @@
 package view;
 
+import controller.BotController;
 import controller.MoveController;
-import controller.WinnerController;
+import controller.WinnerController_Dyutin_Gayazov;
 import exception.WrongCoordinatinatesException;
-import model.Field;
 import model.Game;
 
 import javax.sound.sampled.*;
@@ -19,7 +19,7 @@ public class WindowView extends JFrame {
     private int[][] arr;
     private MoveController moveController = new MoveController();
     private Game game;
-    private WinnerController winnerController;
+    private WinnerController_Dyutin_Gayazov winnerControllerDyutinGayazov;
     //public static boolean status = false;
     public static boolean stopGame = false;
 
@@ -31,7 +31,7 @@ public class WindowView extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(WindowView.EXIT_ON_CLOSE);
         this.arr = game.getField().getField();
-        this.winnerController = new WinnerController(game);
+        this.winnerControllerDyutinGayazov = new WinnerController_Dyutin_Gayazov(game);
 
 
         JPanel panel = new JPanel();
@@ -54,13 +54,14 @@ public class WindowView extends JFrame {
                     try {
                         if (!stopGame) {
                             moveController.makeMove(x, y, game.getField());
+                            BotController.gadid();
                         }
-                        if (winnerController.WhoseWin() != null) {
-                            if (winnerController.WhoseWin().toString().contains(game.getPlayer1().toString())) {
+                        if (winnerControllerDyutinGayazov.WhoseWin() != null) {
+                            if (winnerControllerDyutinGayazov.WhoseWin().toString().contains(game.getPlayer1().toString())) {
                                 //status = true;
                                 stopGame = true;
                             }
-                            if (winnerController.WhoseWin().toString().contains(game.getPlayer2().toString())) {
+                            if (winnerControllerDyutinGayazov.WhoseWin().toString().contains(game.getPlayer2().toString())) {
                                 //status = true;
                                 stopGame = true;
 

@@ -1,6 +1,6 @@
 package model;
 
-import controller.BotController;
+//import controller.BotController;
 
 public class Game {
     private Field field;
@@ -14,10 +14,10 @@ public class Game {
         this.player2 = player2;
     }
 
-//    public Game(Player player1,int width, int height){
-//        this.field = new Field(width,height);
-//        this.player1 = player1;
-//    }
+    public Game(Player player1,int width, int height){
+        this.field = new Field(width,height);
+        this.player1 = player1;
+    }
 
     public Field getField() {
         return field;

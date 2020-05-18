@@ -10,14 +10,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class WinnerController {
+public class WinnerController_Dyutin_Gayazov {
     private int[][] winLines1;
     private int[][] winLines2;
     public static int[][] winLine;
     private Game game;
     public static HashMap<Integer, BufferedImage> lines = new HashMap<>();
 
-    public WinnerController(Game game) {
+    public WinnerController_Dyutin_Gayazov(Game game) {
         this.game = game;
     }
 
