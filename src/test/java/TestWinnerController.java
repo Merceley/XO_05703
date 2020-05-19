@@ -105,13 +105,6 @@ public class TestWinnerController {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
         game.getField().setField(field);
-        int[][] field1 = Arrays.copyOf(game.getField().getField(), game.getField().getField().length);
-        for (int i = 0; i < field1.length; i++) {
-            for (int j = 0; j < field1[0].length; j++) {
-                System.out.print(field1[i][j] + " ");
-            }
-            System.out.println(" ");
-        }
         Assertions.assertEquals(player1, WinnerController_Dyutin_Gayazov.WhoseWin(game));
     }
 
