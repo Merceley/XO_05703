@@ -7,11 +7,14 @@ import model.Field;
 
 import java.awt.*;
 
+import model.Field;
+import view.WindowView;
+
+
 public class Main {
     public static void main(String[] args) {
         int width = 10;
         int height = 10;
-
         Field field = new Field(width, height);
         Player player1 = new Player(Figure.X,"Соник");
         Player player2 = new Player(Figure.O,"Фиксик");
