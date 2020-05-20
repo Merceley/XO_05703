@@ -9,6 +9,10 @@ public class Player {
         this.name = name;
     }
 
+    public Figure getFigure(){
+        return figure;
+    }
+
     @Override
     public String toString() {
         return name + " - " + figure;

@@ -6,8 +6,10 @@ import model.Field;
 import model.Figure;
 
 public class MoveController {
+    private static int[][] arr;
+
     public static Figure whoseMove(Field field) {
-        int[][] arr = field.getField();
+        arr = field.getField();
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
@@ -24,6 +26,7 @@ public class MoveController {
     }
 
     public static void makeMove(int x, int y, Field field) {
+        arr = field.getField();
         if (x > field.getWidth() || x < 0) {
             throw new WrongCoordinatinatesException();
         }
@@ -34,10 +37,12 @@ public class MoveController {
             Figure current = whoseMove(field);
             switch (current) {
                 case O:
-                    field.getField()[x][y] = -1;
+                    arr[x][y] = -1;
+                    field.setField(arr);
                     break;
                 case X:
-                    field.getField()[x][y] = 1;
+                    arr[x][y] = 1;
+                    field.setField(arr);
                     break;
                 default:
                     break;
