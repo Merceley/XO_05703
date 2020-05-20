@@ -9,7 +9,18 @@ public class Player {
         this.name = name;
     }
 
-    public Figure getFigure(){
+    public static int returnnumberfigure(Figure figure) {
+        int k = 0;
+        if (figure == Figure.X) {
+            k = 1;
+        }
+        if (figure == Figure.O) {
+            k = -1;
+        }
+        return k;
+    }
+
+    public Figure getFigure() {
         return figure;
     }
 

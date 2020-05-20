@@ -23,9 +23,12 @@ public class WinnerController_Dyutin_Gayazov {
     }
 
     public static Player WhoseWin(Game game) {
-        winLines1 = new int[game.getField().getField().length][game.getField().getField()[0].length];
-        winLines2 = new int[game.getField().getField().length][game.getField().getField()[0].length];
-        winLine = new int[game.getField().getField().length][game.getField().getField()[0].length];
+        String folder = "src//main//resources//images";
+        int width = game.getField().getField().length;
+        int height = game.getField().getField()[0].length;
+        winLines1 = new int[width][height];
+        winLines2 = new int[width][height];
+        winLine = new int[width][height];
 
         //победа по вертикале
         for (int i = 0; i < game.getField().getField().length; i++) {
@@ -37,7 +40,7 @@ public class WinnerController_Dyutin_Gayazov {
                     if (temp[i] == 5) {
                         BufferedImage linevert = null;
                         try {
-                            linevert = ImageIO.read(new File("images" + "//" + "linevert.png"));
+                            linevert = ImageIO.read(new File(folder + "//" + "linevert.png"));
                             lines.put(1, linevert);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -48,7 +51,7 @@ public class WinnerController_Dyutin_Gayazov {
                     if (temp[i] == -5) {
                         BufferedImage linevert = null;
                         try {
-                            linevert = ImageIO.read(new File("images" + "//" + "linevert.png"));
+                            linevert = ImageIO.read(new File(folder + "//" + "linevert.png"));
                             lines.put(1, linevert);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -72,7 +75,7 @@ public class WinnerController_Dyutin_Gayazov {
                     if (temp[i] == 5) {
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linegoriz.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linegoriz.png"));
                             lines.put(1, linegoriz);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -83,7 +86,7 @@ public class WinnerController_Dyutin_Gayazov {
                     if (temp[i] == -5) {
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linegoriz.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linegoriz.png"));
                             lines.put(1, linegoriz);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -110,7 +113,7 @@ public class WinnerController_Dyutin_Gayazov {
                         winLine = winLines1;
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag1.png"));
                             lines.put(1, linegoriz);
 
                         } catch (IOException e) {
@@ -123,7 +126,7 @@ public class WinnerController_Dyutin_Gayazov {
                         winLine = winLines2;
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag1.png"));
                             lines.put(1, linegoriz);
 
                         } catch (IOException e) {
@@ -136,7 +139,7 @@ public class WinnerController_Dyutin_Gayazov {
                         winLine = winLines1;
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag1.png"));
                             lines.put(1, linegoriz);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -148,7 +151,7 @@ public class WinnerController_Dyutin_Gayazov {
                         winLine = winLines2;
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag1.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag1.png"));
                             lines.put(1, linegoriz);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -241,7 +244,7 @@ public class WinnerController_Dyutin_Gayazov {
                         }
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag2.png"));
                             lines.put(1, linegoriz);
 
                         } catch (IOException e) {
@@ -257,7 +260,7 @@ public class WinnerController_Dyutin_Gayazov {
                         }
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag2.png"));
                             lines.put(1, linegoriz);
 
                         } catch (IOException e) {
@@ -273,7 +276,7 @@ public class WinnerController_Dyutin_Gayazov {
                         }
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag2.png"));
                             lines.put(1, linegoriz);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -288,7 +291,7 @@ public class WinnerController_Dyutin_Gayazov {
                         }
                         BufferedImage linegoriz = null;
                         try {
-                            linegoriz = ImageIO.read(new File("images" + "//" + "linediag2.png"));
+                            linegoriz = ImageIO.read(new File(folder + "//" + "linediag2.png"));
                             lines.put(1, linegoriz);
                         } catch (IOException e) {
                             e.printStackTrace();

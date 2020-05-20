@@ -54,7 +54,8 @@ public class WindowView extends JFrame {
                 if (x < arr[0].length || y < arr.length) {
                     try {
                         if (!stopGame) {
-                            if (WinnerController_Dyutin_Gayazov.WhoseWin(game) == null){
+                            if (WinnerController_Dyutin_Gayazov.WhoseWin(game) == null) {
+//                                BotController.gadid();
                                 MoveController.makeMove(x, y, game.getField());
                             }
                             if (WinnerController_Dyutin_Gayazov.WhoseWin(game) == null) {
@@ -80,12 +81,13 @@ public class WindowView extends JFrame {
                                     clip.open(ais);
                                     clip.setFramePosition(0);
                                     clip.start();
-                                    Thread.sleep(clip.getMicrosecondLength()/1000);
+                                    Thread.sleep(clip.getMicrosecondLength() / 1000);
                                     clip.stop();
                                     clip.close();
                                 } catch (IOException | UnsupportedAudioFileException | LineUnavailableException exc) {
                                     exc.printStackTrace();
-                                } catch (InterruptedException exc) {}
+                                } catch (InterruptedException exc) {
+                                }
 
                             }
                         }

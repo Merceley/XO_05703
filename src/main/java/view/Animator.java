@@ -45,11 +45,12 @@ public class Animator implements Runnable {
         public void downloadImages() {
         //images = new HashMap<>();
         try {
-            BufferedImage image1 = ImageIO.read(new File("images" + "//" + "fixic.png"));
+            String folder = "src//main//resources//images";
+            BufferedImage image1 = ImageIO.read(new File(folder + "//" + "fixic.png"));
             images.put(-1, image1);
-            BufferedImage image2 = ImageIO.read(new File("images" + "//" + "0.jpg"));
+            BufferedImage image2 = ImageIO.read(new File(folder + "//" + "0.jpg"));
             images.put(0, image2);
-            BufferedImage image3 = ImageIO.read(new File("images" + "//" + "соник.png"));
+            BufferedImage image3 = ImageIO.read(new File(folder + "//" + "соник.png"));
             images.put(1, image3);
 //            BufferedImage linevert = ImageIO.read(new File("images" + "//" + "linevert.png"));
 //            images.put(2, linevert);

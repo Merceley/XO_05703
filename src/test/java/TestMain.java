@@ -1,5 +1,7 @@
 
 import controller.BotController;
+import controller.MoveController;
+import model.Field;
 import model.Figure;
 import model.Game;
 import model.Player;
@@ -38,15 +40,19 @@ public class TestMain {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
+        int[] expected = new int[]{-1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         game.getField().setField(field);
-        Assertions.assertEquals(false, BotController.gadid());
-        for (int i = 0; i < game.getField().getField().length; i++) {
-            for (int j = 0; j < game.getField().getField().length; j++) {
-                System.out.print(game.getField().getField()[i][j] + "  ");
-            }
-            System.out.println(" ");
-        }
-        System.out.println(" ");
+        BotController.gadid();
+        Assertions.assertArrayEquals(expected, game.getField().getField()[0]);
+//        Assertions.assertEquals(false, BotController.gadid());
+//        for (int i = 0; i < game.getField().getField().length; i++) {
+//            for (int j = 0; j < game.getField().getField().length; j++) {
+//                System.out.print(game.getField().getField()[i][j] + "  ");
+//            }
+//            System.out.println(" ");
+//        }
+//        System.out.println(" ");
 
         field = new int[][]{
                 {-1, 1, 0, 0, 0, 0, 0, 0, 0, 0},

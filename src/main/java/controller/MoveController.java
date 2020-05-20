@@ -49,4 +49,15 @@ public class MoveController {
             }
         }
     }
+
+    public static int sum(Field field) {
+        int[][] arr = field.getField();
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                sum += arr[i][j];
+            }
+        }
+        return sum;
+    }
 }
