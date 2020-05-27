@@ -22,5 +22,6 @@ public class Main {
         //Game game = new Game(player1,width,height);
         BotController botController = new BotController(game);
         WindowView windowView = new WindowView(game);
+        //test git 05-702
     }
 }
